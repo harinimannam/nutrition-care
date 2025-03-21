@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Care - Diet Plan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="title">Nutrition Care - Healthy Diet Plan</div>
+        <div class="auth-buttons">
+            <button id="signInBtn" onclick="openAuthModal()">Sign In / Sign Up</button>
+            <button id="logoutBtn" onclick="logout()" style="display: none;">Logout</button>
+        </div>
+    </header>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <h2>Sign In / Sign Up</h2>
+            <form id="authForm">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+
+                <button type="button" onclick="authenticate()">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!-- Nutrition Care Section with Background Image -->
+    <div class="container nutrition-care">
+        <div class="overlay">
+            <h1>Nutrition Care</h1>
+            <p>Nutrition care involves assessing individual dietary needs and providing 
+                <br> personalized guidance to promote health and manage medical conditions.
+                <br> It focuses on balanced nutrition, lifestyle modifications, and therapeutic diets to enhance overall well-being.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden Until Signed In) -->
+    <div id="mainContent" style="display: none;">
+        <div class="container">
+            <h2>Get Your Personalized Diet Plan</h2>
+            <form id="dietForm">
+                <label for="age">Age:</label>
+                <input type="number" id="age" required>
+
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" required>
+
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" required>
+
+                <label for="goal">Goal:</label>
+                <select id="goal">
+                    <option value="loss">Weight Loss</option>
+                    <option value="gain">Weight Gain</option>
+                </select>
+
+                <button type="button" onclick="generateDietPlan()">Get Diet Plan</button>
+            </form>
+        </div>
+
+        <div class="container" id="dietPlanContainer" style="display: none;">
+            <h2>Your Diet Plan</h2>
+            <p id="dietPlan"></p>
+        </div>
+    </div>
+    <!-- Subscription Plans Section -->
+<div class="container" id="subscriptionPlans">
+    <h2>Choose Your Meal Plan</h2>
+
+    <div class="plans-container">
+        <!-- Weekly Plan -->
+        <div class="plan weekly-plan">
+            <img src="weekly plan.webp" alt="Weekly Plan">
+            <h3>Weekly Plan</h3>
+            <p>✔ 7 Days of Nutritious Meals</p>
+            <p>✔ Breakfast, Lunch & Dinner</p>
+            <p><strong>Price:</strong> <del>$39.99</del> <span class="discount-price">$29.99</span></p>
+            <button onclick="openPopup('Weekly', 29.99)">Buy Now</button>
+        </div>
+
+        <!-- Monthly Plan (Best Deal) -->
+        <div class="plan monthly-plan best-deal">
+            <img src="monthy plan.webp" alt="Monthly Plan">
+            <h3>Monthly Plan <span class="badge">Best Deal</span></h3>
+            <p>✔ 30 Days of Healthy Meals</p>
+            <p>✔ Personalized Diet Plan</p>
+            <p><strong>Price:</strong> <del>$129.99</del> <span class="discount-price">$99.99</span></p>
+            <button onclick="openPopup('Monthly', 99.99)">Buy Now</button>
+        </div>
+
+        <!-- Yearly Plan -->
+        <div class="plan yearly-plan">
+            <img src="yearly plan.webp" alt="Yearly Plan">
+            <h3>Yearly Plan</h3>
+            <p>✔ 365 Days of Balanced Meals</p>
+            <p>✔ Free Nutrition Consultations</p>
+            <p><strong>Price:</strong> <del>$1299.99</del> <span class="discount-price">$999.99</span></p>
+            <button onclick="openPopup('Yearly', 999.99)">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+<!-- Purchase Confirmation Popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2>Confirm Your Purchase</h2>
+        <p id="popup-text"></p>
+        <button id="confirmBtn">Proceed to Checkout</button>
+    </div>
+</div>
+
+       <!-- Dynamic Diet Plan Section -->
+       <div class="container" id="dietPlanContainer">
+        <h2>Your Diet Plan</h2>
+        <p id="dietPlan"></p>
+    </div>
+    <!-- Balanced Diet Plan Section -->
+    <div class="container">
+        <div class="section">
+            <h2>Balanced Diet Plan</h2>
+            <div class="diet-item">
+                <img src="breakfast.jpeg" alt="Breakfast">
+                <p><strong>Breakfast:</strong> Oatmeal with fruits and nuts</p>
+            </div>
+            <div class="diet-item">
+                <img src="lunch.jpeg" alt="Lunch">
+                <p><strong>Lunch:</strong> Grilled chicken with quinoa and vegetables</p>
+            </div>
+            <div class="diet-item">
+                <img src="snack.jpeg" alt="Snack">
+                <p><strong>Snack:</strong> Greek yogurt with honey</p>
+            </div>
+            <div class="diet-item">
+                <img src="dinner.jpeg" alt="Dinner">
+                <p><strong>Dinner:</strong> Salmon with steamed broccoli and brown rice</p>
+            </div>
+        </div>
+    </div>
+    <!-- Healthy Eating Tips Section -->
+    <div class="container">
+        <div class="section">
+            <h2>Healthy Eating Tips</h2>
+            <div class="tip-item">
+                <img src="Eat more fruits and vegetables.jpeg" alt="Eat More Fruits and Vegetables">
+                <p><strong>Eat more fruits and vegetables:</strong> They are rich in vitamins, minerals, and fiber.</p>
+            </div>
+            <div class="tip-item">
+                <img src="water.jpeg" alt="Stay Hydrated">
+                <p><strong>Stay hydrated:</strong> Drinking plenty of water is essential for overall health.</p>
+            </div>
+            <div class="tip-item">
+                <img src="no sugar.jpeg" alt="Avoid Processed and Sugary Foods">
+                <p><strong>Avoid processed and sugary foods:</strong> They contribute to weight gain and health issues.</p>
+            </div>
+            <div class="tip-item">
+                <img src="Exercise Regularly.jpeg" alt="Exercise Regularly">
+                <p><strong>Exercise regularly:</strong> Physical activity supports a healthy metabolism and overall well-being.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Nutrition Care - All Rights Reserved
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
